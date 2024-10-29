@@ -77,7 +77,7 @@ def main(args):
     print(f'Starting with weights: {args.weights}')
 
     device = select_device(args.device)
-    model = yolov5_export(args.weights, device, inplace=True)
+    model = yolov5_export(args.weights, map_location=device, inplace=True)
 
     if len(model.names.keys()) > 0:
         print('\nCreating labels.txt file...')
