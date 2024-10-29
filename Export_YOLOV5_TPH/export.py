@@ -79,12 +79,6 @@ def main(args):
     device = select_device(args.device)
     model = yolov5_export(args.weights, device, inplace=True)
 
-    if len(model.names.keys()) > 0:
-        print('\nCreating labels.txt file...')
-        with open('labels.txt', 'w') as f:
-            for name in model.names.values():
-                f.write(f'{name}\n')
-
     model = nn.Sequential(model, DeepStreamOutput())
     img_size = args.size * 2 if len(args.size) == 1 else args.size
 
