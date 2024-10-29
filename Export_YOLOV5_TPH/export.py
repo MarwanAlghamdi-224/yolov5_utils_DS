@@ -28,7 +28,7 @@ def suppress_warnings():
     warnings.filterwarnings('ignore', category=DeprecationWarning)
 
 def yolov5_export(weights, device, inplace=False, fuse=True):
-    model = attempt_load(weights, device=device, inplace=inplace, fuse=fuse)
+    model = attempt_load(weights, map_location=device, inplace=inplace, fuse=fuse)
     model.eval()
     for k, m in model.named_modules():
         if isinstance(m, Detect):
